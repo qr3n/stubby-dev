@@ -76,7 +76,7 @@ const Home: FC = () => {
         <div className='flex flex-col items-center justify-center -mt-24'>
           <div
               className='py-2 mb-6 px-4 flex gap-2 items-center justify-center bg-[#303131] rounded-full rotate-[-5deg] mt-4'>
-            <div className='font-semibold flex gap-1'>
+            <div className='font-semibold text-white flex gap-1'>
               <p className='text-green-400'>@</p>
               {user?.username}
             </div>

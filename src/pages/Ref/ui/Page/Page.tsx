@@ -12,7 +12,7 @@ const Ref: FC = () => {
             className='w-full px-8 flex items-center flex-col justify-center absolute z-50 top-[25%] -translate-y-10 left-1/2 -translate-x-1/2'>
           <div
               className='py-2 mb-6 px-4 flex gap-2 items-center justify-center bg-[#303131] rounded-full rotate-[-5deg] mt-4'>
-            <div className='font-semibold flex gap-1'>
+            <div className='font-semibold text-white flex gap-1'>
               <p className='text-green-400'>X2</p>
               Now
             </div>
