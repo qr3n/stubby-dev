@@ -2,12 +2,15 @@ import { FC } from "react";
 import {Link, Route, Routes} from "react-router-dom";
 import { Home, NoMatch, Ref } from "@/pages";
 import {WebAppProvider} from "@vkruglikov/react-telegram-web-app";
+import bg from './bg.jpg'
+
 
 const App: FC = () => {
   return (
       <WebAppProvider options={{
         smoothButtonsTransition: true
       }}>
+        <img src={bg} alt={''} className='fixed top-0 left-0 object-cover w-screen h-screen'/>
         <Routes>
           <Route path="/">
             <Route index element={<Home/>}/>

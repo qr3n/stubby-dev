@@ -1,7 +1,6 @@
 import {Dispatch, FC, SetStateAction, useEffect, useState} from "react";
 import {useInitData, WebAppUser} from "@vkruglikov/react-telegram-web-app";
 import coin from './coin.png'
-import bg from './bg.jpg'
 interface INumber {
   id: number,
   x: number,
@@ -78,7 +77,6 @@ const Home: FC = () => {
 
   return (
       <div className='flex-col w-screen h-screen flex items-center justify-center select-none'>
-        <img src={bg} alt={''} className='fixed top-0 left-0 object-cover w-screen h-screen'/>
         <div className='flex flex-col items-center justify-center -mt-24'>
           <div
               className='py-2 mb-6 px-4 flex gap-2 items-center justify-center bg-[#303131] rounded-full rotate-[-5deg] mt-4'>

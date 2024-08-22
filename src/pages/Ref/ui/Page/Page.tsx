@@ -1,13 +1,9 @@
 import { FC } from "react";
-import bg from './bg.jpg'
 import copy from './copy.png'
 
 const Ref: FC = () => {
   return (
       <>
-        <div className='w-screen h-screen absolute -z-50'>
-          <img src={bg} alt={'bg'} className='w-full h-full object-cover'/>
-        </div>
         <div
             className='w-full px-8 flex items-center flex-col justify-center absolute z-50 top-[25%] -translate-y-10 left-1/2 -translate-x-1/2'>
           <div
