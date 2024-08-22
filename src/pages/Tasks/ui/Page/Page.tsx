@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-const Ref: FC = () => {
+const Tasks: FC = () => {
   return (
       <>
         Ref
@@ -8,4 +8,4 @@ const Ref: FC = () => {
   );
 };
 
-export default Ref;
+export default Tasks;

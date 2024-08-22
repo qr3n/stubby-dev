@@ -1,6 +1,6 @@
-import {Dispatch, FC, SetStateAction, useEffect, useState} from "react";
-import {useInitData, WebAppUser} from "@vkruglikov/react-telegram-web-app";
+import {Dispatch, FC, SetStateAction, useContext, useState} from "react";
 import coin from './coin.png'
+import {GlobalContext} from "@/shared";
 interface INumber {
   id: number,
   x: number,
@@ -64,16 +64,9 @@ const Coin = (props: { setCoins: Dispatch<SetStateAction<number>>, setEnergy: Di
 };
 
 const Home: FC = () => {
-  const [initData] = useInitData()
-  const [user, setUser] = useState<WebAppUser>()
   const [_, setEnergy] = useState(100)
   const [coins, setCoins] = useState(0)
-
-  useEffect(() => {
-    if (initData) {
-      setUser(initData.user)
-    }
-  }, [initData]);
+  const { user } = useContext(GlobalContext)
 
   return (
       <div className='flex-col w-screen h-screen flex items-center justify-center select-none'>
