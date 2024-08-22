@@ -111,7 +111,7 @@ const Home: FC = () => {
                   <p className='font-semibold text-white text-xs sm:text-sm'>Task</p>
                 </div>
               </Link>
-              <Link to='/invite' style={{background: 'rgb(255, 255, 255, .6)'}}
+              <Link to='/ref' style={{background: 'rgb(255, 255, 255, .6)'}}
                     className='flex w-[25%] pt-2 rounded-3xl items-center justify-center flex-col gap-0.5'>
                 <div className='bg-gray-600 px-4 py-1.5 rounded-full w-full text-center'>
                   <p className='font-semibold text-white text-xs sm:text-sm'>Ref</p>

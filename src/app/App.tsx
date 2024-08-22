@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Home, NoMatch } from "@/pages";
+import { Home, NoMatch, Ref } from "@/pages";
 import {WebAppProvider} from "@vkruglikov/react-telegram-web-app";
 
 const App: FC = () => {
@@ -12,6 +12,7 @@ const App: FC = () => {
         <Route path="/">
           <Route index element={<Home />} />
           <Route path="*" element={<NoMatch />} />
+          <Route path="/ref" element={<Ref />} />
         </Route>
       </Routes>
     </WebAppProvider>
