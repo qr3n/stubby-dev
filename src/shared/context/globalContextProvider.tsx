@@ -1,8 +1,7 @@
+import {useInitData, WebAppUser} from "@vkruglikov/react-telegram-web-app";
 import {PropsWithChildren, useEffect, useState} from "react";
 import {GlobalContext} from "@/shared";
-import {useQuery} from "react-query";
 import {api} from "@/shared";
-import {useInitData, WebAppUser} from "@vkruglikov/react-telegram-web-app";
 
 export const GlobalContextProvider = (props: PropsWithChildren) => {
     const [balance, setBalance] = useState<number | null>(null);
@@ -16,14 +15,11 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
         }
     }, [initData]);
 
-    const { data: balanceData, isSuccess: isBalanceFetchSuccess } = useQuery({
-        queryFn: async () => api.get(`/balance/${user?.id}`),
-        queryKey: ['balance']
-    })
-
     useEffect(() => {
-        if (isBalanceFetchSuccess) setBalance(balanceData.data)
-    }, [isBalanceFetchSuccess]);
+        if (user) {
+            api.get(`/balance/${user?.id}`).then(r => setBalance(r.data))
+        }
+    }, [user])
 
     return (
         <GlobalContext.Provider value={{

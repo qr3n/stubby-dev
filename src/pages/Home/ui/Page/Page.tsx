@@ -66,7 +66,7 @@ const Coin = (props: { setCoins: Dispatch<SetStateAction<number>>, setEnergy: Di
 const Home: FC = () => {
   const [_, setEnergy] = useState(100)
   const [coins, setCoins] = useState(0)
-  const { user } = useContext(GlobalContext)
+  const { user, balance } = useContext(GlobalContext)
 
   return (
       <div className='flex-col w-screen h-screen flex items-center justify-center select-none'>
@@ -78,10 +78,22 @@ const Home: FC = () => {
               {user?.username}
             </div>
           </div>
-          <div className='flex items-center justify-center gap-3'>
-            <h1 className='text-[#303131] font-bold z-50 text-5xl'>{coins.toFixed(2).toString().replace('.', ',')}</h1>
-          </div>
-          <Coin setCoins={setCoins} setEnergy={setEnergy}/>
+          { balance ? (
+              <div className='flex items-center justify-center gap-3'>
+                <h1 className='text-[#303131] font-bold z-50 text-5xl'>{balance.toFixed(2).toString().replace('.', ',')}</h1>
+              </div>
+          ) : (
+              <div role="status" className="max-w-sm flex animate-pulse">
+                <div className="h-8 bg-gray-200 rounded-2xl dark:bg-white backdrop-blur w-24 mb-4"></div>
+              </div>
+          )}
+          { balance ? (
+              <Coin setCoins={setCoins} setEnergy={setEnergy}/>
+          ) : (
+              <div role="status" className="max-w-sm flex animate-pulse">
+                <div className='coin z-50 transition-all cursor-pointer max-w-[80vw] number-appear-area rounded-full bg-gray-200 rounded-2xl dark:bg-white backdrop-blur'/>
+              </div>
+          )}
         </div>
 
       </div>
