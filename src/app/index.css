@@ -57,3 +57,20 @@ body {
         transform: translateY(-300%);
     }
 }
+
+.coin {
+    width: 300px;
+}
+
+@media screen and (max-height: 800px) {
+    .coin {
+        width: 250px;
+    }
+}
+
+
+@media screen and (max-height: 700px) {
+    .coin {
+        width: 200px;
+    }
+}

@@ -48,7 +48,7 @@ const Coin = (props: { setCoins: Dispatch<SetStateAction<number>>, setEnergy: Di
   return (
       <div id="ex1" className='mt-4'>
         <img draggable={false} onClick={handleClick} alt='coin' src={coin}
-               className='z-50 transition-all cursor-pointer max-w-[80vw] w-[200px] h-[200px] number-appear-area'
+               className='coin z-50 transition-all cursor-pointer max-w-[80vw] number-appear-area'
                style={{ transform: `${isActive ? 'scale(95%)' : 'scale(100%)'}` }}
         />
         {numbers.map(number => (
