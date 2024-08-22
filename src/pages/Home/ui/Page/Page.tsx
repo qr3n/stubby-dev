@@ -1,6 +1,7 @@
 import {FC, useContext, useState} from "react";
 import coin from './coin.png'
 import {api, GlobalContext} from "@/shared";
+import logo from './logo.png'
 interface INumber {
   id: number,
   x: number,
@@ -82,6 +83,7 @@ const Home: FC = () => {
           </div>
           { balance !== null ? (
               <div className='flex items-center justify-center gap-3'>
+                <img src={logo} className='w-32' alt='img'/>
                 <h1 className='text-[#303131] font-bold z-50 text-5xl'>{balance.toFixed(2).toString().replace('.', ',')}</h1>
               </div>
           ) : (
