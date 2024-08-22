@@ -13,7 +13,7 @@ const App: FC = () => {
         smoothButtonsTransition: true
       }}>
         <GlobalContextProvider>
-          <img src={bg} alt={''} className='fixed top-0 left-0 object-cover w-screen h-screen'/>
+          <img src={bg} alt={''} className='-z-50 fixed top-0 left-0 object-cover w-screen h-screen'/>
           <Routes>
             <Route path="/">
               <Route index element={<Home/>}/>
