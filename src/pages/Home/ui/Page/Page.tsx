@@ -14,7 +14,6 @@ const Coin = () => {
   const { user, setBalance, setEnergy } = useContext(GlobalContext);
   const [numbers, setNumbers] = useState<INumber[]>([]);
   const [isActive, setIsActive] = useState(false);
-  const [lastClickTime, setLastClickTime] = useState(0);
 
   const click = (event: any) => {
     api.post('/click', { id: user?.id })
@@ -35,22 +34,13 @@ const Coin = () => {
     setNumbers(prev => [...prev, newNumber]);
   };
 
-  const handleClick = (event: any) => {
-    const now = new Date().getTime();
-
-    if (now - lastClickTime >= 1000) {
-      setLastClickTime(now);
-      click(event);
-    }
-  };
-
   const handleAnimationEnd = (id: number) => {
     setNumbers(numbers.filter(number => number.id !== id));
   };
 
   return (
       <div id="ex1" className='mt-4 select-none'>
-        <img draggable={false} onClick={handleClick} alt='coin' src={coin}
+        <img draggable={false} onClick={click} alt='coin' src={coin}
                className='coin select-none z-50 transition-all cursor-pointer max-w-[80vw] number-appear-area'
                style={{ transform: `${isActive ? 'scale(95%)' : 'scale(100%)'}` }}
         />
