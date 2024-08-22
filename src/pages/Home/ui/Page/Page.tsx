@@ -3,7 +3,6 @@ import {useInitData} from "@vkruglikov/react-telegram-web-app";
 
 const Home: FC = () => {
   const [_, initData] = useInitData()
-
   return (
     <>
       <section>
