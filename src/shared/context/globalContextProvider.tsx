@@ -1,4 +1,4 @@
-import {useInitData, WebAppUser} from "@vkruglikov/react-telegram-web-app";
+import {useExpand, useInitData, WebAppUser} from "@vkruglikov/react-telegram-web-app";
 import {PropsWithChildren, useEffect, useState} from "react";
 import {GlobalContext} from "@/shared";
 import {api} from "@/shared";
@@ -8,6 +8,11 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
     const [energy, setEnergy] = useState<number | null>(null);
     const [initData] = useInitData()
     const [user, setUser] = useState<WebAppUser>()
+    const [_, expand] = useExpand()
+
+    useEffect(() => {
+        expand()
+    }, [expand]);
 
     useEffect(() => {
         if (initData) {
