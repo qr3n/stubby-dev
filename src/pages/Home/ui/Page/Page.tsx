@@ -1,4 +1,4 @@
-import {Dispatch, FC, SetStateAction, useContext, useState} from "react";
+import {FC, useContext, useState} from "react";
 import coin from './coin.png'
 import {api, GlobalContext} from "@/shared";
 interface INumber {
@@ -9,8 +9,8 @@ interface INumber {
   show: boolean
 }
 
-const Coin = (props: { setEnergy: Dispatch<SetStateAction<number>> }) => {
-  const { user, setBalance } = useContext(GlobalContext);
+const Coin = () => {
+  const { user, setBalance, setEnergy } = useContext(GlobalContext);
   const [numbers, setNumbers] = useState<INumber[]>([]);
   const [isActive, setIsActive] = useState(false);
   const [lastClickTime, setLastClickTime] = useState(0);
@@ -21,7 +21,7 @@ const Coin = (props: { setEnergy: Dispatch<SetStateAction<number>> }) => {
     setTimeout(() => setIsActive(false), 100);
 
     setBalance(prev => prev! += 0.25)
-    props.setEnergy(prev => prev -= 0.25)
+    setEnergy(prev => prev!-= 0.25)
 
     const { clientX, clientY } = event;
     const newNumber = {
@@ -68,7 +68,6 @@ const Coin = (props: { setEnergy: Dispatch<SetStateAction<number>> }) => {
 };
 
 const Home: FC = () => {
-  const [_, setEnergy] = useState(100)
   const { user, balance } = useContext(GlobalContext)
 
   return (
@@ -91,7 +90,7 @@ const Home: FC = () => {
               </div>
           )}
           { balance !== null ? (
-              <Coin setEnergy={setEnergy}/>
+              <Coin/>
           ) : (
               <div role="status" className="max-w-sm flex animate-pulse">
                 <div className='coin z-50 transition-all cursor-pointer max-w-[80vw] number-appear-area rounded-full bg-gray-200 rounded-2xl dark:bg-white backdrop-blur'/>
