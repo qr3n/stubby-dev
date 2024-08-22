@@ -1,14 +1,19 @@
-import {FC} from "react";
-import {useInitData} from "@vkruglikov/react-telegram-web-app";
+import {FC, useEffect, useState} from "react";
+import {useInitData, WebAppUser} from "@vkruglikov/react-telegram-web-app";
 
 const Home: FC = () => {
   const [initData] = useInitData()
+  const [user, setUser] = useState<WebAppUser>()
 
-  console.log(initData)
+  useEffect(() => {
+    if (initData) {
+      setUser(initData.user)
+    }
+  }, [initData]);
 
   return (
     <>
-
+      { user?.username }
     </>
   );
 };
