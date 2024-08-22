@@ -2,17 +2,17 @@ import {FC, useContext, useEffect, useState} from "react";
 import {api, GlobalContext, Tabs, TabsContent, TabsList, TabsTrigger} from "@/shared";
 import {useWebApp} from "@vkruglikov/react-telegram-web-app";
 import {useMutation} from "react-query";
-import {Loader2} from "lucide-react";
+import {CheckCircle, Loader2} from "lucide-react";
 
 const Tasks: FC = () => {
     const webapp = useWebApp()
-    const { setBalance, user } = useContext(GlobalContext)
+    const { setBalance, user, claimed, setClaimed } = useContext(GlobalContext)
     const [url, setUrl] = useState('')
 
     const { mutate, isLoading, isSuccess } = useMutation(async (task: string) => api.post(`/claim`, {
         task,
         id: user?.id
-    }))
+    }).then(() => setClaimed(prev => [...prev, task])))
 
     useEffect(() => {
         if (isSuccess) {
@@ -43,7 +43,7 @@ const Tasks: FC = () => {
                               mutate('website')
                           }}
                           className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
-                          { isLoading ? <Loader2 className='animate-spin'/> : 'Start' }
+                          {claimed.includes('website') ? <CheckCircle/> : (isLoading ? <Loader2 className='animate-spin'/> : 'Start') }
                       </button>
                   </div>
                   <div className='mt-2 text-black w-full flex gap-3 rounded-2xl  p-3'
@@ -58,7 +58,7 @@ const Tasks: FC = () => {
                               mutate('group')
                           }}
                           className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
-                          {isLoading ? <Loader2 className='animate-spin'/> : 'Start'}
+                          {claimed.includes('group') ? <CheckCircle/> : (isLoading ? <Loader2 className='animate-spin'/> : 'Start') }
                       </button>
                   </div>
                   <div className='mt-2 text-black w-full flex gap-3 rounded-2xl  p-3'
@@ -73,7 +73,7 @@ const Tasks: FC = () => {
                               mutate('twitter')
                           }}
                           className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
-                          {isLoading ? <Loader2 className='animate-spin'/> : 'Start'}
+                          {claimed.includes('twitter') ? <CheckCircle/> : (isLoading ? <Loader2 className='animate-spin'/> : 'Start') }
                       </button>
                   </div>
                   <div className='mt-2 text-black w-full flex gap-3 rounded-2xl  p-3'

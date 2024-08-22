@@ -4,8 +4,9 @@ import {GlobalContext} from "@/shared";
 import {api} from "@/shared";
 
 export const GlobalContextProvider = (props: PropsWithChildren) => {
-    const [balance, setBalance] = useState<number | null>(0);
+    const [balance, setBalance] = useState<number | null>(null);
     const [energy, setEnergy] = useState<number | null>(2000);
+    const [claimed, setClaimed] = useState<string[]>([]);
     const [initData] = useInitData()
     const [user, setUser] = useState<WebAppUser>()
     const [_, expand] = useExpand()
@@ -36,8 +37,10 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
         if (user) {
             api.get(`/balance/${user?.id}`).then(r => {
                 setBalance(r.data)
-                console.log(r.data)
-                console.log(r)
+            })
+
+            api.get(`/claimed/${user?.id}`).then(r => {
+                setClaimed(r.data)
             })
         }
     }, [user])
@@ -48,7 +51,9 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
             balance,
             setBalance,
             energy,
-            setEnergy
+            setEnergy,
+            claimed,
+            setClaimed
         }}>
             { props.children }
         </GlobalContext.Provider>

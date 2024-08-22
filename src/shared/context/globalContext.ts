@@ -9,6 +9,9 @@ export interface IGlobalContext {
     setEnergy: Dispatch<SetStateAction<number | null>>,
 
     user: WebAppUser | undefined,
+
+    claimed: string[],
+    setClaimed: Dispatch<SetStateAction<string[]>>,
 }
 
 export const GlobalContext = createContext<IGlobalContext>(null!)
