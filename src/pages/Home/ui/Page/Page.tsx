@@ -83,7 +83,7 @@ const Home: FC = () => {
           </div>
           { balance !== null ? (
               <div className='flex items-center justify-center gap-3'>
-                <img src={logo} className='w-8' alt='img'/>
+                <img src={logo} className='w-12' alt='img'/>
                 <h1 className='text-[#303131] font-bold z-50 text-5xl'>{balance.toFixed(2).toString().replace('.', ',')}</h1>
               </div>
           ) : (
