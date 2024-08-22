@@ -17,7 +17,11 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
 
     useEffect(() => {
         if (user) {
-            api.get(`/balance/${user?.id}`).then(r => setBalance(r.data))
+            api.get(`/balance/${user?.id}`).then(r => {
+                setBalance(r.data)
+                console.log(r.data)
+                console.log(r)
+            })
         }
     }, [user])
 

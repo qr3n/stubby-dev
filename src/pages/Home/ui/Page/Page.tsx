@@ -68,6 +68,7 @@ const Home: FC = () => {
   const [__, setCoins] = useState(0)
   const { user, balance } = useContext(GlobalContext)
 
+
   return (
       <div className='flex-col w-screen h-screen flex items-center justify-center select-none'>
         <div className='flex flex-col items-center justify-center -mt-24'>
