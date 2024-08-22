@@ -19,6 +19,9 @@ interface IInputValues {
     wallet: string
 }
 
+const subscribe_tasks = ['website', 'group', 'twitter', 'wallet']
+const earn_tasks = ['token', 'nft']
+
 const Tasks: FC = () => {
     const webapp = useWebApp()
     const { setBalance, user, claimed, setClaimed } = useContext(GlobalContext)
@@ -29,7 +32,16 @@ const Tasks: FC = () => {
     const { mutate, isLoading, isSuccess } = useMutation(async (task: string) => api.post(`/claim`, {
         task,
         id: user?.id
-    }).then(() => setClaimed(prev => [...prev, task])))
+    }).then(() => {
+        setClaimed(prev => [...prev, task])
+        if (subscribe_tasks.includes(task)) {
+            setBalance(prev => prev! += 500)
+        }
+
+        else if (earn_tasks.includes(task)) {
+            setBalance(prev => prev! += 2000)
+        }
+    }))
 
     const {
         mutate: mutateWallet,
@@ -47,7 +59,6 @@ const Tasks: FC = () => {
     useEffect(() => {
         if (isSuccess) {
             webapp.openLink(url)
-            setBalance(prev => prev! += 500)
         }
     }, [isSuccess, setBalance, url, webapp]);
 
