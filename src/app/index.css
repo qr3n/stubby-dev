@@ -24,6 +24,11 @@
     border-radius: 1000px;
 }
 
+* {
+    user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
 body {
     color: rgb(var(--foreground-rgb));
     background: white;
