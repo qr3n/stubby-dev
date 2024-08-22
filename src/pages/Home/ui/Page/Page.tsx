@@ -51,7 +51,7 @@ const Coin = () => {
   return (
       <div id="ex1" className='mt-4'>
         <img draggable={false} onClick={handleClick} alt='coin' src={coin}
-               className='coin z-50 transition-all cursor-pointer max-w-[80vw] number-appear-area'
+               className='coin select-none z-50 transition-all cursor-pointer max-w-[80vw] number-appear-area'
                style={{ transform: `${isActive ? 'scale(95%)' : 'scale(100%)'}` }}
         />
         {numbers.map(number => (
