@@ -124,7 +124,6 @@ const Tasks: FC = () => {
                               <button
                                   disabled={isLoading}
                                   className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
-                                  Start
                                   { claimed.includes('wallet') ? <CheckCircle/> : 'Start' }
                               </button>
                           </DialogTrigger>
@@ -161,7 +160,7 @@ const Tasks: FC = () => {
                               <Loader2 className='animate-spin'/> : 'Start')}
                       </button>
                   </div>
-                  <div className='mt-4 text-black w-full flex gap-3 rounded-2xl  p-3'
+                  <div className='mt-2 text-black w-full flex gap-3 rounded-2xl  p-3'
                        style={{backgroundColor: 'rgb(255, 255, 255, .7)'}}>
                       <div className='bg-white p-2 pl-3 min-w-[210px] rounded-xl flex items-center'>
                           <h1 className='font-semibold'>Buy NFT St.Stubby</h1>
