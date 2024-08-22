@@ -1,4 +1,4 @@
-import {Dispatch, FC, SetStateAction, useContext, useState} from "react";
+import {Dispatch, FC, SetStateAction, useContext, useEffect, useState} from "react";
 import coin from './coin.png'
 import {GlobalContext} from "@/shared";
 interface INumber {
@@ -68,6 +68,11 @@ const Home: FC = () => {
   const [__, setCoins] = useState(0)
   const { user, balance } = useContext(GlobalContext)
 
+  useEffect(() => {
+    console.log('BALANCE CHANGED', balance)
+    console.log('BALANCE CHANGED', balance)
+    console.log('BALANCE CHANGED', balance)
+  }, [balance]);
 
   return (
       <div className='flex-col w-screen h-screen flex items-center justify-center select-none'>
