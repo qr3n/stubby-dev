@@ -16,25 +16,25 @@ const FAQ: FC = () => {
               </AccordionItem>
               <AccordionItem value="item-2">
                   <AccordionTrigger className='p-3 rounded-2xl bg-white mt-4 font-semibold'>What are we aiming for?</AccordionTrigger>
-                  <AccordionContent className='backdrop-blur-xl' style={{ backgroundColor: 'rgb(255, 255, 255, .55)', borderRadius: '24px', marginTop: '1rem', padding: '1rem'}}>
+                  <AccordionContent style={{ backgroundColor: 'rgb(255, 255, 255, .55)', borderRadius: '24px', marginTop: '1rem', padding: '1rem'}}>
                       We aim to build a strong community that rallies around the brave hero Stubby and bring peace to the world.
                   </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
                   <AccordionTrigger className='p-3 rounded-2xl bg-white mt-4 font-semibold'>Where is the STUBBY token traded?</AccordionTrigger>
-                  <AccordionContent className='backdrop-blur-xl' style={{ backgroundColor: 'rgb(255, 255, 255, .55)', borderRadius: '24px', marginTop: '1rem', padding: '1rem'}}>
+                  <AccordionContent style={{ backgroundColor: 'rgb(255, 255, 255, .55)', borderRadius: '24px', marginTop: '1rem', padding: '1rem'}}>
                       The STUBBY token is traded on the Raydium DEX exchange
                   </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
                   <AccordionTrigger className='p-3 rounded-2xl bg-white mt-4 font-semibold'>Minimum withdrawal quantity?</AccordionTrigger>
-                  <AccordionContent className='backdrop-blur-xl' style={{ backgroundColor: 'rgb(255, 255, 255, .55)', borderRadius: '24px', marginTop: '1rem', padding: '1rem'}}>
+                  <AccordionContent style={{ backgroundColor: 'rgb(255, 255, 255, .55)', borderRadius: '24px', marginTop: '1rem', padding: '1rem'}}>
                       You need to accumulate 150 000 STUBBY
                   </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-5">
                   <AccordionTrigger className='p-3 rounded-2xl bg-white mt-4 font-semibold'>How can I get my STUBBY tokens?</AccordionTrigger>
-                  <AccordionContent className='backdrop-blur-xl' style={{ backgroundColor: 'rgb(255, 255, 255, .55)', borderRadius: '24px', marginTop: '1rem', padding: '1rem'}}>
+                  <AccordionContent style={{ backgroundColor: 'rgb(255, 255, 255, .55)', borderRadius: '24px', marginTop: '1rem', padding: '1rem'}}>
                       In order to receive your tokens you need to have 1 NFT St.Stubby on your wallet balance.
                   </AccordionContent>
               </AccordionItem>
