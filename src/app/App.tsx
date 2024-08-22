@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {Link, Route, Routes} from "react-router-dom";
-import {Home, NoMatch, Ref, Tasks} from "@/pages";
+import {FAQ, Home, NoMatch, Ref, Tasks} from "@/pages";
 import {WebAppProvider} from "@vkruglikov/react-telegram-web-app";
 import bg from './bg.jpg'
 import {GlobalContextProvider} from "@/shared";
@@ -19,6 +19,7 @@ const App: FC = () => {
               <Route path="*" element={<NoMatch/>}/>
               <Route path="/ref" element={<Ref/>}/>
               <Route path="/tasks" element={<Tasks/>}/>
+              <Route path="/faq" element={<FAQ/>}/>
             </Route>
           </Routes>
           <div

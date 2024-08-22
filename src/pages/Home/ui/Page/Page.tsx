@@ -68,12 +68,6 @@ const Home: FC = () => {
   const [__, setCoins] = useState(0)
   const { user, balance } = useContext(GlobalContext)
 
-  useEffect(() => {
-    console.log('BALANCE CHANGED', balance)
-    console.log('BALANCE CHANGED', balance)
-    console.log('BALANCE CHANGED', balance)
-  }, [balance]);
-
   return (
       <div className='flex-col w-screen h-screen flex items-center justify-center select-none'>
         <div className='flex flex-col items-center justify-center -mt-24'>
@@ -84,7 +78,7 @@ const Home: FC = () => {
               {user?.username}
             </div>
           </div>
-          { balance ? (
+          { balance !== null ? (
               <div className='flex items-center justify-center gap-3'>
                 <h1 className='text-[#303131] font-bold z-50 text-5xl'>{balance.toFixed(2).toString().replace('.', ',')}</h1>
               </div>
@@ -93,7 +87,7 @@ const Home: FC = () => {
                 <div className="h-8 bg-gray-200 rounded-2xl dark:bg-white backdrop-blur w-24 mb-4"></div>
               </div>
           )}
-          { balance ? (
+          { balance !== null ? (
               <Coin setCoins={setCoins} setEnergy={setEnergy}/>
           ) : (
               <div role="status" className="max-w-sm flex animate-pulse">
