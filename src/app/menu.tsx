@@ -42,7 +42,7 @@ export const Menu = () => {
                  style={{background: 'rgb(0, 0, 0, .4)'}}>
                 <div
                     className='absolute bg-gradient-to-l from-[#000] to-[#333] backdrop-blur-md p-2.5 top-0 left-0 rounded-full transition-all will-change-transform'
-                    style={{width: `${energy! / 10}%`}}/>
+                    style={{width: `${energy! / 20}%`}}/>
             </div>
         </div>
     )
