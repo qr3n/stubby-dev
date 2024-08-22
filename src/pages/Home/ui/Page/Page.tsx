@@ -2,6 +2,7 @@ import {FC, useContext, useState} from "react";
 import coin from './coin.png'
 import {api, GlobalContext} from "@/shared";
 import logo from './logo.png'
+import stubby from './stubby.png'
 interface INumber {
   id: number,
   x: number,
@@ -61,7 +62,7 @@ const Coin = () => {
 const Home: FC = () => {
   const { user, balance } = useContext(GlobalContext)
 
-  return (
+  return balance !== null ? (
       <div className='flex-col w-screen h-screen flex items-center justify-center select-none'>
         <div className='flex flex-col items-center justify-center -mt-24'>
           <div
@@ -71,25 +72,17 @@ const Home: FC = () => {
               {user?.username}
             </div>
           </div>
-          { balance !== null ? (
-              <div className='flex items-center justify-center gap-3'>
-                <img src={logo} className='w-12' alt='img'/>
-                <h1 className='text-[#303131] font-bold z-50 text-5xl'>{balance.toFixed(2).toString().replace('.', ',')}</h1>
-              </div>
-          ) : (
-              <div role="status" className="max-w-sm flex animate-pulse">
-                <div className="h-8 bg-gray-200 rounded-2xl dark:bg-white backdrop-blur w-24 mb-4"></div>
-              </div>
-          )}
-          { balance !== null ? (
-              <Coin/>
-          ) : (
-              <div role="status" className="max-w-sm flex animate-pulse">
-                <div className='coin z-50 transition-all cursor-pointer max-w-[80vw] number-appear-area rounded-full bg-gray-200 rounded-2xl dark:bg-white backdrop-blur'/>
-              </div>
-          )}
+          <div className='flex items-center justify-center gap-3'>
+            <img src={logo} className='w-12' alt='img'/>
+            <h1 className='text-[#303131] font-bold z-50 text-5xl'>{balance?.toFixed(2).toString().replace('.', ',')}</h1>
+          </div>
+          <Coin/>
         </div>
-
+      </div>
+  ) : (
+      <div className='flex items-center justify-center fixed z-50 top-0 left-0 w-screen h-screen bg-[#111]'>
+        <img draggable={false} alt='coin' src={stubby}
+             className='select-none z-50 transition-all cursor-pointer max-w-[60vw] max-h-[60vh] number-appear-area'/>
       </div>
   );
 };
