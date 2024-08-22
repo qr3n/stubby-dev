@@ -48,7 +48,7 @@ const Coin = (props: { setCoins: Dispatch<SetStateAction<number>>, setEnergy: Di
   return (
       <div id="ex1" className='mt-4'>
         <img draggable={false} onClick={handleClick} alt='coin' src={coin}
-               className='z-50 transition-all cursor-pointer max-w-[80vw] w-[300px] h-[300px] number-appear-area'
+               className='z-50 transition-all cursor-pointer max-w-[80vw] w-[200px] h-[200px] number-appear-area'
                style={{ transform: `${isActive ? 'scale(95%)' : 'scale(100%)'}` }}
         />
         {numbers.map(number => (
@@ -89,7 +89,7 @@ const Home: FC = () => {
             </div>
           </div>
           <div className='flex items-center justify-center gap-3'>
-            <h1 className='text-[#303131] font-bold text-5xl'>{coins.toFixed(2).toString().replace('.', ',')}</h1>
+            <h1 className='text-[#303131] font-bold z-50 text-5xl'>{coins.toFixed(2).toString().replace('.', ',')}</h1>
           </div>
           <Coin setCoins={setCoins} setEnergy={setEnergy}/>
         </div>
