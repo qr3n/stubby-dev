@@ -21,7 +21,7 @@ const Coin = () => {
     setTimeout(() => setIsActive(false), 100);
 
     setBalance(prev => prev! += 0.25)
-    setEnergy(prev => prev!-= 0.25)
+    setEnergy(prev => prev! -= 1)
 
     const { clientX, clientY } = event;
     const newNumber = {

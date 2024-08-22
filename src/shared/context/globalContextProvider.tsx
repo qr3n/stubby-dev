@@ -5,7 +5,7 @@ import {api} from "@/shared";
 
 export const GlobalContextProvider = (props: PropsWithChildren) => {
     const [balance, setBalance] = useState<number | null>(null);
-    const [energy, setEnergy] = useState<number | null>(null);
+    const [energy, setEnergy] = useState<number | null>(1000);
     const [initData] = useInitData()
     const [user, setUser] = useState<WebAppUser>()
     const [_, expand] = useExpand()
@@ -19,6 +19,18 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
             setUser(initData.user)
         }
     }, [initData]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (energy) {
+                if (energy < 1000) {
+                    setEnergy(prev => prev! += 1)
+                }
+            }
+        }, 1000 * 14.4)
+
+        return () => clearInterval(interval)
+    }, [energy])
 
     useEffect(() => {
         if (user) {
