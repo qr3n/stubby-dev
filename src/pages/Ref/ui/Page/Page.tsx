@@ -20,11 +20,11 @@ const Ref: FC = () => {
           <h1 className='text-black text-6xl font-bold'>Invite</h1>
           <div className='mt-8 w-full flex items-center justify-between bg-white p-4 rounded-2xl'>
             <div className='max-w-[87%] relative'>
-              <p className='font-medium text-[#303131] max-w-full text-nowrap overflow-hidden whitespace-nowrap'>https://t.me/stubbycryptobot/start?${user?.id}</p>
+              <p className='font-medium text-[#303131] max-w-full text-nowrap overflow-hidden whitespace-nowrap'>https://t.me/stubbycryptobot?start=${user?.id}</p>
               <div
                   className='absolute top-0 left-0 w-full h-full bg-gradient-to-l from-white to-transparent'/>
             </div>
-              <CopyToClipboard text={`https://t.me/stubbycryptobot/start?${user?.id}`}>
+              <CopyToClipboard text={`https://t.me/stubbycryptobot?start=${user?.id}`}>
                   <div className='bg-gray-200 p-2 rounded-lg cursor-pointer active:scale-90 transition-all'>
                       <img src={copy} alt={'copy'} width={18}/>
                   </div>
