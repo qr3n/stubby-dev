@@ -121,10 +121,12 @@ const Tasks: FC = () => {
                       </div>
                       <Dialog open={open} onOpenChange={setOpen}>
                           <DialogTrigger className='w-full'>
-                              <div
+                              <button
+                                  disabled={isLoading}
                                   className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
                                   Start
-                              </div>
+                                  { claimed.includes('wallet') ? <CheckCircle/> : 'Start' }
+                              </button>
                           </DialogTrigger>
                           <DialogContent className='bg-white text-black'>
                               <h1 className='text-3xl font-bold text-center'>Solana wallet</h1>
