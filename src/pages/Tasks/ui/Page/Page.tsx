@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 const Tasks: FC = () => {
   return (
       <div
-          className='w-full px-8 flex items-center flex-col justify-center absolute z-50 top-[25%] -translate-y-10 left-1/2 -translate-x-1/2'>
+          className=' w-full px-8 flex items-center flex-col justify-center absolute z-50 top-[25%] -translate-y-10 left-1/2 -translate-x-1/2'>
           <h1 className='text-black text-6xl font-bold'>Tasks</h1>
           <Link to='/tasks/subscribe' className='w-full'>
               <div
