@@ -1,4 +1,4 @@
-import {Dispatch, FC, SetStateAction, useContext, useEffect, useState} from "react";
+import {Dispatch, FC, SetStateAction, useContext, useState} from "react";
 import coin from './coin.png'
 import {GlobalContext} from "@/shared";
 interface INumber {
