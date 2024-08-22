@@ -65,7 +65,7 @@ const Coin = (props: { setCoins: Dispatch<SetStateAction<number>>, setEnergy: Di
 
 const Home: FC = () => {
   const [_, setEnergy] = useState(100)
-  const [coins, setCoins] = useState(0)
+  const [__, setCoins] = useState(0)
   const { user, balance } = useContext(GlobalContext)
 
   return (
