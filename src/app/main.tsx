@@ -9,7 +9,6 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>
       <Provider store={store}>
-          <script src="https://telegram.org/js/telegram-web-app.js"></script>
           <App/>
       </Provider>
   </BrowserRouter>,
