@@ -1,6 +1,6 @@
 import {Dispatch, FC, SetStateAction, useContext, useState} from "react";
 import coin from './coin.png'
-import {GlobalContext} from "@/shared";
+import {api, GlobalContext} from "@/shared";
 interface INumber {
   id: number,
   x: number,
@@ -9,16 +9,20 @@ interface INumber {
   show: boolean
 }
 
-const Coin = (props: { setCoins: Dispatch<SetStateAction<number>>, setEnergy: Dispatch<SetStateAction<number>> }) => {
+const Coin = (props: { setEnergy: Dispatch<SetStateAction<number>> }) => {
+  const { user, setBalance } = useContext(GlobalContext);
   const [numbers, setNumbers] = useState<INumber[]>([]);
   const [isActive, setIsActive] = useState(false);
   const [lastClickTime, setLastClickTime] = useState(0);
 
   const click = (event: any) => {
+    api.post('/click', { id: user?.id })
     setIsActive(true);
     setTimeout(() => setIsActive(false), 100);
-    props.setCoins(prev => prev += 0.25)
+
+    setBalance(prev => prev! += 0.25)
     props.setEnergy(prev => prev -= 0.25)
+
     const { clientX, clientY } = event;
     const newNumber = {
       id: Date.now(),
@@ -65,7 +69,6 @@ const Coin = (props: { setCoins: Dispatch<SetStateAction<number>>, setEnergy: Di
 
 const Home: FC = () => {
   const [_, setEnergy] = useState(100)
-  const [__, setCoins] = useState(0)
   const { user, balance } = useContext(GlobalContext)
 
   return (
@@ -88,7 +91,7 @@ const Home: FC = () => {
               </div>
           )}
           { balance !== null ? (
-              <Coin setCoins={setCoins} setEnergy={setEnergy}/>
+              <Coin setEnergy={setEnergy}/>
           ) : (
               <div role="status" className="max-w-sm flex animate-pulse">
                 <div className='coin z-50 transition-all cursor-pointer max-w-[80vw] number-appear-area rounded-full bg-gray-200 rounded-2xl dark:bg-white backdrop-blur'/>
