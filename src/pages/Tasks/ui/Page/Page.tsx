@@ -10,7 +10,7 @@ const Tasks: FC = () => {
           <h1 className='text-black text-6xl font-bold'>Tasks</h1>
           <Link to='/tasks/subscribe' className='w-full'>
               <div
-                  className='p-4 bg-white w-full rounded-2xl mt-6 text-[#303131] flex gap-3 items-center font-semibold'>
+                  className='p-4 bg-white w-full rounded-2xl mt-8 text-[#303131] flex gap-3 items-center font-semibold'>
                   <img src={bell} alt='' className='w-8'/>
                   Subscribe
               </div>
