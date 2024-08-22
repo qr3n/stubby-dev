@@ -1,7 +1,11 @@
-import { FC } from "react";
+import {FC, useContext} from "react";
 import copy from './copy.png'
+import {GlobalContext} from "@/shared";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const Ref: FC = () => {
+    const { user } = useContext(GlobalContext)
+
   return (
       <>
         <div
@@ -16,18 +20,20 @@ const Ref: FC = () => {
           <h1 className='text-black text-6xl font-bold'>Invite</h1>
           <div className='mt-8 w-full flex items-center justify-between bg-white p-4 rounded-2xl'>
             <div className='max-w-[87%] relative'>
-              <p className='font-medium text-[#303131] max-w-full text-nowrap overflow-hidden whitespace-nowrap'>http://t.me/elixiumton/invite?user-id=1233334422414</p>
+              <p className='font-medium text-[#303131] max-w-full text-nowrap overflow-hidden whitespace-nowrap'>https://t.me/stubbycryptobot/start?${user?.id}</p>
               <div
                   className='absolute top-0 left-0 w-full h-full bg-gradient-to-l from-white to-transparent'/>
             </div>
-            <div className='bg-gray-200 p-2 rounded-lg cursor-pointer active:scale-90 transition-all'>
-              <img src={copy} alt={'copy'} width={18}/>
-            </div>
+              <CopyToClipboard text={`https://t.me/stubbycryptobot/start?${user?.id}`}>
+                  <div className='bg-gray-200 p-2 rounded-lg cursor-pointer active:scale-90 transition-all'>
+                      <img src={copy} alt={'copy'} width={18}/>
+                  </div>
+              </CopyToClipboard>
           </div>
         </div>
-        <div className='flex flex-col gap-3 h-[45%] rounded-2xl overflow-y-scroll absolute bottom-0 w-full px-6'>
+          <div className='flex flex-col gap-3 h-[45%] rounded-2xl overflow-y-scroll absolute bottom-0 w-full px-6'>
 
-        </div>
+          </div>
       </>
   );
 };
