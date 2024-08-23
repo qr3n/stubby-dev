@@ -12,6 +12,8 @@ export interface IGlobalContext {
 
     claimed: string[],
     setClaimed: Dispatch<SetStateAction<string[]>>,
+
+    refs: string[],
 }
 
 export const GlobalContext = createContext<IGlobalContext>(null!)

@@ -7,6 +7,7 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
     const [balance, setBalance] = useState<number | null>(0);
     const [energy, setEnergy] = useState<number | null>(2000);
     const [claimed, setClaimed] = useState<string[]>([]);
+    const [refs, setRefs] = useState<string[]>([]);
     const [initData] = useInitData()
     const [user, setUser] = useState<WebAppUser>()
     const [_, expand] = useExpand()
@@ -42,6 +43,10 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
             api.get(`/claimed/${user?.id}`).then(r => {
                 setClaimed(r.data)
             })
+
+            api.get(`/refs/${user?.id}`).then(r => {
+                setRefs(r.data)
+            })
         }
     }, [user])
 
@@ -53,7 +58,8 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
             energy,
             setEnergy,
             claimed,
-            setClaimed
+            setClaimed,
+            refs
         }}>
             { props.children }
         </GlobalContext.Provider>
