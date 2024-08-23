@@ -4,7 +4,7 @@ import {GlobalContext} from "@/shared";
 import {api} from "@/shared";
 
 export const GlobalContextProvider = (props: PropsWithChildren) => {
-    const [balance, setBalance] = useState<number | null>(0);
+    const [balance, setBalance] = useState<number | null>(null);
     const [energy, setEnergy] = useState<number | null>(2000);
     const [claimed, setClaimed] = useState<string[]>([]);
     const [refs, setRefs] = useState<string[]>([]);
