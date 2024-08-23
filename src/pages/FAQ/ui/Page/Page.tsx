@@ -21,8 +21,8 @@ const FAQ: FC = () => {
                   </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
-                  <AccordionTrigger className='text-sm p-3 rounded-2xl bg-white mt-4 font-semibold'>Where is the STUBBY token traded?</AccordionTrigger>
-                  <AccordionContent className='text-xs' style={{ backgroundColor: 'rgb(255, 255, 255, .55)', borderRadius: '24px', marginTop: '1rem', padding: '1rem'}}>
+                  <AccordionTrigger className='text-left items-start text-sm p-3 rounded-2xl bg-white mt-4 font-semibold'>Where is the STUBBY token traded?</AccordionTrigger>
+                  <AccordionContent className='text-left items-start text-xs' style={{ backgroundColor: 'rgb(255, 255, 255, .55)', borderRadius: '24px', marginTop: '1rem', padding: '1rem'}}>
                       The STUBBY token is traded on the Raydium DEX exchange
                   </AccordionContent>
               </AccordionItem>
