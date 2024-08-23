@@ -35,11 +35,11 @@ const Tasks: FC = () => {
     }).then(() => {
         setClaimed(prev => [...prev, task])
         if (subscribe_tasks.includes(task)) {
-            setBalance(prev => prev! += 500)
+            setBalance(prev => prev! += 5000)
         }
 
         else if (earn_tasks.includes(task)) {
-            setBalance(prev => prev! += 2000)
+            setBalance(prev => prev! += 20000)
         }
     }))
 
@@ -79,7 +79,7 @@ const Tasks: FC = () => {
                   <TabsTrigger value="account" className='rounded-2xl p-3  text-black font-semibold data-[state=active]:bg-white'>Subscribe</TabsTrigger>
                   <TabsTrigger value="password" className='rounded-2xl p-3 text-black font-semibold data-[state=active]:bg-white'>Earn</TabsTrigger>
               </TabsList>
-              <TabsContent value="account">
+              <TabsContent value="account" className='overflow-hidden overflow-y-scroll pb-4 max-h-[calc(100vh-440px)] rounded-2xl'>
                   <div className='mt-4 text-black w-full flex gap-3 rounded-2xl  p-3'
                        style={{backgroundColor: 'rgb(255, 255, 255, .7)'}}>
                       <div className='bg-white p-2 pl-3 min-w-[210px] rounded-xl flex items-center'>
@@ -88,8 +88,10 @@ const Tasks: FC = () => {
                       <button
                           disabled={isLoading}
                           onClick={() => {
-                              setUrl('https://stubbyhero.com')
-                              mutate('website')
+                              if (!claimed.includes('website')) {
+                                  setUrl('https://stubbyhero.com')
+                                  mutate('website')
+                              }
                           }}
                           className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
                           {claimed.includes('website') ? <CheckCircle/> : (isLoading ? <Loader2 className='animate-spin'/> : 'Start') }
@@ -103,8 +105,10 @@ const Tasks: FC = () => {
                       <button
                           disabled={isLoading}
                           onClick={() => {
-                              setUrl('https://t.me/stubby_hero')
-                              mutate('group')
+                              if(!claimed.includes('group')) {
+                                  setUrl('https://t.me/stubby_hero')
+                                  mutate('group')
+                              }
                           }}
                           className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
                           {claimed.includes('group') ? <CheckCircle/> : (isLoading ? <Loader2 className='animate-spin'/> : 'Start') }
@@ -118,8 +122,10 @@ const Tasks: FC = () => {
                       <button
                           disabled={isLoading}
                           onClick={() => {
-                              setUrl('https://x.com/StubbyBraveHero')
-                              mutate('twitter')
+                              if (!claimed.includes('twitter')) {
+                                  setUrl('https://x.com/StubbyBraveHero')
+                                  mutate('twitter')
+                              }
                           }}
                           className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
                           {claimed.includes('twitter') ? <CheckCircle/> : (isLoading ? <Loader2 className='animate-spin'/> : 'Start') }
@@ -131,17 +137,22 @@ const Tasks: FC = () => {
                           <h1 className='font-semibold'>Solana wallet address</h1>
                       </div>
                       <Dialog open={open} onOpenChange={setOpen}>
-                          <DialogTrigger className='w-full'>
+                          {claimed.includes('wallet') ? <button
+                              disabled={true}
+                              className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
+                              <CheckCircle/>
+                          </button> : <DialogTrigger className='w-full'>
                               <button
                                   disabled={isLoading}
                                   className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
-                                  { claimed.includes('wallet') ? <CheckCircle/> : 'Start' }
+                                  {claimed.includes('wallet') ? <CheckCircle/> : 'Start'}
                               </button>
-                          </DialogTrigger>
+                          </DialogTrigger>}
                           <DialogContent className='bg-white text-black'>
                               <h1 className='text-3xl font-bold text-center'>Solana wallet</h1>
                               <form onSubmit={submit} className='w-full'>
-                                  <input {...register('wallet')} className='text-white w-full bg-[#303131] p-3 pl-4 rounded-xl'
+                                  <input {...register('wallet')}
+                                         className='text-white w-full bg-[#303131] p-3 pl-4 rounded-xl'
                                          placeholder='7EcDhSYGxXyscszYEp35KHN8vvw3'/>
                                   <div
                                       onClick={submit}
