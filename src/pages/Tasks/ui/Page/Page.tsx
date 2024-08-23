@@ -174,8 +174,10 @@ const Tasks: FC = () => {
                       <button
                           disabled={isLoading}
                           onClick={() => {
-                              setUrl('https://raydium.io/swap/?inputMint=6ezAua3VoAo3TRBic8oSufabmM75V8mUaGrpwvLze8n6&outputMint=sol')
-                              mutate('token')
+                              if (!claimed.includes('token')) {
+                                  setUrl('https://raydium.io/swap/?inputMint=6ezAua3VoAo3TRBic8oSufabmM75V8mUaGrpwvLze8n6&outputMint=sol')
+                                  mutate('token')
+                              }
                           }}
                           className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
                           {claimed.includes('token') ? <CheckCircle/> : (isLoading ?
@@ -190,8 +192,10 @@ const Tasks: FC = () => {
                       <button
                           disabled={isLoading}
                           onClick={() => {
-                              setUrl('https://solsea.io/c/66472dc44b21d7621ca637f8')
-                              mutate('nft')
+                              if (!claimed.includes('nft')) {
+                                  setUrl('https://solsea.io/c/66472dc44b21d7621ca637f8')
+                                  mutate('nft')
+                              }
                           }}
                           className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
                           {claimed.includes('nft') ? <CheckCircle/> : (isLoading ?
