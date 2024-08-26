@@ -12,27 +12,29 @@ interface INumber {
 }
 
 const Coin = () => {
-  const { user, setBalance, setEnergy } = useContext(GlobalContext);
+  const { user, setBalance, setEnergy, energy } = useContext(GlobalContext);
   const [numbers, setNumbers] = useState<INumber[]>([]);
   const [isActive, setIsActive] = useState(false);
 
   const click = (event: any) => {
-    api.post('/click', { id: user?.id })
-    setIsActive(true);
-    setTimeout(() => setIsActive(false), 100);
+    if (energy && energy > 0) {
+      api.post('/click', { id: user?.id })
+      setIsActive(true);
+      setTimeout(() => setIsActive(false), 100);
 
-    setBalance(prev => prev! += 0.25)
-    setEnergy(prev => prev! -= 1)
+      setBalance(prev => prev! += 0.25)
+      setEnergy(prev => prev! -= 1)
 
-    const { clientX, clientY } = event;
-    const newNumber = {
-      id: Date.now(),
-      x: clientX,
-      y: clientY,
-      value: '0,25',
-      show: true,
-    };
-    setNumbers(prev => [...prev, newNumber]);
+      const { clientX, clientY } = event;
+      const newNumber = {
+        id: Date.now(),
+        x: clientX,
+        y: clientY,
+        value: '0,25',
+        show: true,
+      };
+      setNumbers(prev => [...prev, newNumber]);
+    }
   };
 
   const handleAnimationEnd = (id: number) => {
