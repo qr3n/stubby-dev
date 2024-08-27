@@ -3,14 +3,30 @@ import {PropsWithChildren, useEffect, useState} from "react";
 import {GlobalContext} from "@/shared";
 import {api} from "@/shared";
 
+interface IWebsocketMessage {
+    energy: number
+}
+
 export const GlobalContextProvider = (props: PropsWithChildren) => {
     const [balance, setBalance] = useState<number | null>(null);
-    const [energy, setEnergy] = useState<number | null>(2000);
+    const [energy, setEnergy] = useState<number | null>(0);
     const [claimed, setClaimed] = useState<string[]>([]);
     const [refs, setRefs] = useState<string[]>([]);
     const [initData] = useInitData()
     const [user, setUser] = useState<WebAppUser>()
     const [_, expand] = useExpand()
+
+    useEffect(() => {
+        const ws = new WebSocket(`wss://stubbybot.ru?user_id=${user?.id}`)
+
+        ws.onmessage = (message) => {
+            const decoded: IWebsocketMessage = JSON.parse(message.data)
+
+            setEnergy(decoded.energy)
+        }
+
+        return () => ws.close()
+    }, [user?.id]);
 
     useEffect(() => {
         expand()
@@ -22,17 +38,17 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
         }
     }, [initData]);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (energy) {
-                if (energy < 1000) {
-                    setEnergy(prev => prev! += 1)
-                }
-            }
-        }, 1000 * 7.2)
-
-        return () => clearInterval(interval)
-    }, [energy])
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         if (energy) {
+    //             if (energy < 1000) {
+    //                 setEnergy(prev => prev! += 1)
+    //             }
+    //         }
+    //     }, 1000 * 7.2)
+    //
+    //     return () => clearInterval(interval)
+    // }, [energy])
 
     useEffect(() => {
         if (user) {
