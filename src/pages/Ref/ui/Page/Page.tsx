@@ -30,8 +30,8 @@ const Ref: FC = () => {
                   </div>
               </div>
 
-              <div className='mt-8 w-full flex flex-col gap-3'>
-                  { refs.map(r => (
+              <div className='mt-8 w-full flex flex-col gap-3 max-h-[calc(100dvh-580px)] overflow-scroll'>
+                  {refs.map(r => (
                       <div className='flex justify-between w-full p-4 rounded-2xl bg-white  '>
                           <h1 className='font-medium text-black'>@{r}</h1>
                           <div className='flex gap-2 items-center justify-center'>
@@ -40,6 +40,7 @@ const Ref: FC = () => {
                           </div>
                       </div>
                   ))}
+
               </div>
           </div>
       </>
