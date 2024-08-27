@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const api = axios.create({
-    baseURL: 'https://a510-2a03-6f00-4-00-79f2.ngrok-free.app',
+    baseURL: 'https://stubbybot.ru',
 })
