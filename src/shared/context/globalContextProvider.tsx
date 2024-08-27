@@ -17,7 +17,7 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
     const [_, expand] = useExpand()
 
     useEffect(() => {
-        const ws = new WebSocket(`wss://stubbybot.ru?user_id=${user?.id}`)
+        const ws = new WebSocket(`wss://stubbybot.ru/energy?user_id=${user?.id}`)
 
         ws.onmessage = (message) => {
             const decoded: IWebsocketMessage = JSON.parse(message.data)
