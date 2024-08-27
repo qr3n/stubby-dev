@@ -1,6 +1,6 @@
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useState } from "react";
 import coin from './coin.png'
-import {GlobalContext} from "@/shared";
+import { api, GlobalContext } from "@/shared";
 import logo from './logo.png'
 import stubby from './stubby.png'
 interface INumber {
@@ -12,20 +12,13 @@ interface INumber {
 }
 
 const Coin = () => {
-  const { user, setBalance, setEnergy, balance, energy } = useContext(GlobalContext);
+  const { user, setBalance, setEnergy, energy } = useContext(GlobalContext);
   const [numbers, setNumbers] = useState<INumber[]>([]);
   const [isActive, setIsActive] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      alert(balance)
-    }, 2000)
-
-    return () => clearInterval(interval)
-  }, [user?.id]);
-
   const click = (event: any) => {
     if (energy && energy > 0) {
+      api.post('/click', { id: user?.id })
       setIsActive(true);
       setTimeout(() => setIsActive(false), 100);
 
