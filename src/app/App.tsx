@@ -2,7 +2,7 @@ import {FC} from "react";
 import {Route, Routes} from "react-router-dom";
 import {FAQ, Home, NoMatch, Ref, Tasks} from "@/pages";
 import {WebAppProvider} from "@vkruglikov/react-telegram-web-app";
-import bg from './bg.jpg'
+import bg from './bg.webp'
 import {GlobalContextProvider} from "@/shared";
 import {Menu} from "./menu.tsx";
 

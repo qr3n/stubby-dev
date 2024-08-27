@@ -1,8 +1,8 @@
 import { FC, useContext, useState } from "react";
-import coin from './coin.png'
+import coin from './coin.webp'
 import { api, GlobalContext } from "@/shared";
-import logo from './logo.png'
-import stubby from './stubby.png'
+import logo from './logo.webp'
+import stubby from './stubby.webp'
 interface INumber {
   id: number,
   x: number,

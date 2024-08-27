@@ -1,7 +1,7 @@
 import {FC, useContext} from "react";
 import copy from './copy.png'
 import {GlobalContext} from "@/shared";
-import logo from './logo.png'
+import logo from './logo.webp'
 
 const Ref: FC = () => {
     const { user, refs } = useContext(GlobalContext)
