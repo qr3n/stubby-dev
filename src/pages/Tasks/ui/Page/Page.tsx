@@ -262,7 +262,7 @@ const Tasks: FC = () => {
                                          className='text-white w-full bg-[#303131] p-3 pl-4 rounded-xl'
                                          placeholder='26997615'/>
                                   <div
-                                      onClick={submit}
+                                      onClick={submit2}
                                       className='bg-black hover:bg-[#404141] rounded-full mt-4 text-center flex items-center justify-center text-white font-bold p-3 w-full'>
                                       { isMutateUidLoading ? <Loader2 className='animate-spin'/> : 'Check' }
                                   </div>
