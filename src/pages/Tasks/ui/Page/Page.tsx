@@ -14,9 +14,14 @@ import {useWebApp} from "@vkruglikov/react-telegram-web-app";
 import {useMutation} from "react-query";
 import {CheckCircle, Loader2} from "lucide-react";
 import {useForm} from "react-hook-form";
+import toast from "react-hot-toast";
 
 interface IInputValues {
     wallet: string
+}
+
+interface IInputValues2 {
+    uid: string
 }
 
 const subscribe_tasks = ['website', 'group', 'twitter', 'wallet']
@@ -27,7 +32,9 @@ const Tasks: FC = () => {
     const { setBalance, user, claimed, setClaimed } = useContext(GlobalContext)
     const [url, setUrl] = useState('')
     const { register, handleSubmit } = useForm<IInputValues>()
+    const { register: register2, handleSubmit: handleSubmit2 } = useForm<IInputValues2>()
     const [open, setOpen] = useState(false)
+    const [open2, setOpen2] = useState(false)
 
     const { mutate, isLoading, isSuccess } = useMutation(async (task: string) => api.post(`/claim`, {
         task,
@@ -52,8 +59,22 @@ const Tasks: FC = () => {
         wallet
     }))
 
+    const {
+        mutate: mutateUid,
+        isLoading: isMutateUidLoading,
+        isSuccess: isMutateUidSuccess,
+        isError
+    } = useMutation(async (uid: string) => api.post('/ref', {
+        id: user?.id,
+        uid
+    }))
+
     const submit = handleSubmit((values) => {
         mutateWallet(values.wallet)
+    })
+
+    const submit2 = handleSubmit2((values) => {
+        mutateUid(values.uid)
     })
 
     useEffect(() => {
@@ -65,19 +86,35 @@ const Tasks: FC = () => {
     useEffect(() => {
         if (isMutateWalletSuccess) {
             setClaimed(prev => [...prev, 'wallet'])
-            setBalance(prev => prev! += 500)
+            setBalance(prev => prev! += 5000)
             setOpen(false)
         }
     }, [isMutateWalletSuccess, setBalance, setClaimed]);
+
+    useEffect(() => {
+        if (isMutateUidSuccess) {
+            toast.success('Спасибо, что вы с нами!')
+            setClaimed(prev => [...prev, 'bingx'])
+            setBalance(prev => prev! += 50000)
+            setOpen2(false)
+        }
+    }, [isMutateUidSuccess, setBalance, setClaimed]);
+
+    useEffect(() => {
+        if (isError) {
+            toast.error('Вы не являетесь рефералом')
+        }
+    }, [isError]);
 
     return (
       <div
           className=' w-full px-8 flex items-center flex-col justify-center fixed z-50 top-[25%] -translate-y-10 left-1/2 -translate-x-1/2'>
           <h1 className='text-black text-6xl font-bold'>Tasks</h1>
-          <Tabs defaultValue="account" className="flex justify-center flex-col mt-8 w-[90vw]">
-              <TabsList>
+          <Tabs defaultValue="account" className="flex justify-center flex-col mt-8 w-[90vw] bg-transparent">
+              <TabsList className='bg-transparent'>
                   <TabsTrigger value="account" className='rounded-2xl p-3  text-black font-semibold data-[state=active]:bg-white'>Subscribe</TabsTrigger>
                   <TabsTrigger value="password" className='rounded-2xl p-3 text-black font-semibold data-[state=active]:bg-white'>Earn</TabsTrigger>
+                  <TabsTrigger value="referral" className='rounded-2xl p-3 text-black font-semibold data-[state=active]:bg-white'>Referral</TabsTrigger>
               </TabsList>
               <TabsContent value="account" className='overflow-hidden overflow-y-scroll pb-4 max-h-[calc(100vh-440px)] rounded-2xl'>
                   <div className='mt-4 text-black w-full flex gap-3 rounded-2xl  p-3'
@@ -201,6 +238,37 @@ const Tasks: FC = () => {
                           {claimed.includes('nft') ? <CheckCircle/> : (isLoading ?
                               <Loader2 className='animate-spin'/> : 'Start')}
                       </button>
+                  </div>
+              </TabsContent>
+
+              <TabsContent value='referral'>
+                  <div className='mt-4 text-black w-full flex gap-3 rounded-2xl  p-3'
+                       style={{backgroundColor: 'rgb(255, 255, 255, .7)'}}>
+                      <div className='bg-white p-2 pl-3 min-w-[210px] rounded-xl flex items-center'>
+                          <h1 className='font-semibold'>Register on BingX</h1>
+                      </div>
+                      <Dialog open={open2} onOpenChange={setOpen2}>
+                          <DialogTrigger className='w-full'>
+                              <button
+                                  onClick={() => webapp.openLink('https://bingx.com/ru-ru/invite/DWVLRX')}
+                                  className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
+                                  Start
+                              </button>
+                          </DialogTrigger>
+                          <DialogContent className='bg-white text-black transition-all'>
+                              <h1 className='text-3xl font-bold text-center'>BingX UID</h1>
+                              <form onSubmit={submit2} className='w-full'>
+                                  <input {...register2('uid')}
+                                         className='text-white w-full bg-[#303131] p-3 pl-4 rounded-xl'
+                                         placeholder='26997615'/>
+                                  <div
+                                      onClick={submit}
+                                      className='bg-black hover:bg-[#404141] rounded-full mt-4 text-center flex items-center justify-center text-white font-bold p-3 w-full'>
+                                      { isMutateUidLoading ? <Loader2 className='animate-spin'/> : 'Check' }
+                                  </div>
+                              </form>
+                          </DialogContent>
+                      </Dialog>
                   </div>
               </TabsContent>
           </Tabs>

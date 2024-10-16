@@ -11,5 +11,6 @@ module.exports = {
   rules: {
     "react-refresh/only-export-components": "warn",
     "no-undef": "off",
+    "no-mixed-spaces-and-tabs": 0, // disable rule
   },
 };

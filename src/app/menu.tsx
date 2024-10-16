@@ -7,7 +7,7 @@ export const Menu = () => {
 
     return (
         <div
-            className='flex left-1/2 -translate-x-1/2 gap-3 items-center justify-center flex-col w-[calc(100%-64px)] absolute bottom-8'
+            className='flex left-1/2 -translate-x-1/2 gap-3 items-center justify-center flex-col w-[calc(100%-64px)] fixed bottom-8'
         >
             <div className='flex gap-2 items-center justify-between w-full'>
                 <div className='flex  backdrop-blur-md w-full px-4 py-3 gap-4 justify-between rounded-3xl'

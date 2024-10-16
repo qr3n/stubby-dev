@@ -5,6 +5,7 @@ import {WebAppProvider} from "@vkruglikov/react-telegram-web-app";
 import bg from './bg.webp'
 import {GlobalContextProvider} from "@/shared";
 import {Menu} from "./menu.tsx";
+import { Toaster } from "react-hot-toast";
 
 
 const App: FC = () => {
@@ -13,6 +14,7 @@ const App: FC = () => {
         smoothButtonsTransition: true
       }}>
         <GlobalContextProvider>
+          <Toaster/>
           <img src={bg} alt={''} className='-z-50 fixed top-0 left-0 object-cover w-screen h-screen'/>
           <Routes>
             <Route path="/">

@@ -8,7 +8,7 @@ interface IWebsocketMessage {
 }
 
 export const GlobalContextProvider = (props: PropsWithChildren) => {
-    const [balance, setBalance] = useState<number | null>(null);
+    const [balance, setBalance] = useState<number | null>(0);
     const [energy, setEnergy] = useState<number | null>(0);
     const [claimed, setClaimed] = useState<string[]>([]);
     const [refs, setRefs] = useState<string[]>([]);
@@ -38,17 +38,6 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
         }
     }, [initData]);
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         if (energy) {
-    //             if (energy < 1000) {
-    //                 setEnergy(prev => prev! += 1)
-    //             }
-    //         }
-    //     }, 1000 * 7.2)
-    //
-    //     return () => clearInterval(interval)
-    // }, [energy])
 
     useEffect(() => {
         if (user) {
