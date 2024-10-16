@@ -65,7 +65,7 @@ const Tasks: FC = () => {
         isSuccess: isMutateUidSuccess,
         isError
     } = useMutation(async (uid: string) => api.post('/ref', {
-        id: user?.id,
+        user_id: user?.id,
         uid
     }))
 
