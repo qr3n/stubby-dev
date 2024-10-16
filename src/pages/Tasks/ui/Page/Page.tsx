@@ -252,6 +252,8 @@ const Tasks: FC = () => {
                               <button
                                   onClick={() => webapp.openLink('https://bingx.com/ru-ru/invite/DWVLRX')}
                                   className='bg-[#303131] hover:bg-[#404141] rounded-full text-center flex items-center justify-center text-white font-bold p-3 w-full'>
+                                  {claimed.includes('bingx') ? <CheckCircle/> : (isMutateUidLoading ?
+                                      <Loader2 className='animate-spin'/> : 'Start')}
                                   Start
                               </button>
                           </DialogTrigger>
