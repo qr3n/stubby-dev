@@ -10,7 +10,7 @@ export const Menu = () => {
             className='flex left-1/2 -translate-x-1/2 gap-3 items-center justify-center flex-col w-[calc(100%-64px)] fixed bottom-8'
         >
             <div className='flex gap-2 items-center justify-between w-full'>
-                <div className='flex  backdrop-blur-md w-full px-4 py-3 gap-4 justify-between rounded-3xl'
+                <div className='flex  backdrop-blur-md w-full overflow-x-auto px-4 py-3 gap-4 justify-between rounded-3xl'
                      style={{background: 'rgb(255, 255, 255, .4)'}}>
                     <Link to='/' style={{background: 'rgb(255, 255, 255, .6)'}}
                           className='w-[25%] flex pt-2 rounded-3xl items-center justify-center flex-col gap-0.5'>
@@ -34,6 +34,13 @@ export const Menu = () => {
                           className='flex w-[25%] pt-2 rounded-3xl items-center justify-center flex-col gap-0.5'>
                         <div className='bg-gray-600 px-4 py-1.5 rounded-full w-full text-center'>
                             <p className='font-semibold text-white text-xs sm:text-sm'>FAQ</p>
+                        </div>
+                    </Link>
+
+                    <Link to='/claim' style={{background: 'rgb(255, 255, 255, .6)'}}
+                          className='flex w-[25%] pt-2 rounded-3xl items-center justify-center flex-col gap-0.5'>
+                        <div className='bg-gray-600 px-4 py-1.5 rounded-full w-full text-center'>
+                            <p className='font-semibold text-white text-xs sm:text-sm'>Claim</p>
                         </div>
                     </Link>
                 </div>

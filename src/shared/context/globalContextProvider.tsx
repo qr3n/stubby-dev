@@ -7,8 +7,18 @@ interface IWebsocketMessage {
     energy: number
 }
 
+// interface IUser {
+//     balance: number,
+//     refs: string,
+//     claimed: string,
+//     wallet: string,
+//     refs_tags: string,
+//     is_claiming_now: boolean,
+//     claiming_now_count: number
+// }
+
 export const GlobalContextProvider = (props: PropsWithChildren) => {
-    const [balance, setBalance] = useState<number | null>(0);
+    const [balance, setBalance] = useState<number | null>(150000);
     const [energy, setEnergy] = useState<number | null>(0);
     const [claimed, setClaimed] = useState<string[]>([]);
     const [refs, setRefs] = useState<string[]>([]);
