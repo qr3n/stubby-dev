@@ -24,15 +24,7 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
     const [refs, setRefs] = useState<string[]>([]);
     const [initData] = useInitData()
     const [user, setUser] = useState<WebAppUser>()
-    const [userData, setUserData] = useState<IUser | null>({
-        balance: 150000,
-        refs: '',
-        claimed: '',
-        wallet: '',
-        refs_tags: '',
-        is_claiming_now: true,
-        claiming_now_count: 40000
-    })
+    const [userData, setUserData] = useState<IUser | null>(null)
     const [_, expand] = useExpand()
 
     useEffect(() => {
