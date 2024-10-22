@@ -7,23 +7,32 @@ interface IWebsocketMessage {
     energy: number
 }
 
-// interface IUser {
-//     balance: number,
-//     refs: string,
-//     claimed: string,
-//     wallet: string,
-//     refs_tags: string,
-//     is_claiming_now: boolean,
-//     claiming_now_count: number
-// }
+interface IUser {
+    balance: number,
+    refs: string,
+    claimed: string,
+    wallet: string,
+    refs_tags: string,
+    is_claiming_now: boolean,
+    claiming_now_count: number
+}
 
 export const GlobalContextProvider = (props: PropsWithChildren) => {
-    const [balance, setBalance] = useState<number | null>(null);
+    const [balance, setBalance] = useState<number | null>(150000);
     const [energy, setEnergy] = useState<number | null>(0);
     const [claimed, setClaimed] = useState<string[]>([]);
     const [refs, setRefs] = useState<string[]>([]);
     const [initData] = useInitData()
     const [user, setUser] = useState<WebAppUser>()
+    const [userData, setUserData] = useState<IUser | null>({
+        balance: 150000,
+        refs: '',
+        claimed: '',
+        wallet: '',
+        refs_tags: '',
+        is_claiming_now: true,
+        claiming_now_count: 40000
+    })
     const [_, expand] = useExpand()
 
     useEffect(() => {
@@ -62,6 +71,10 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
             api.get(`/refs/${user?.id}`).then(r => {
                 setRefs(r.data)
             })
+
+            api.get(`/user?user_id=${user.id}`).then(r => {
+                setUserData(r.data)
+            })
         }
     }, [user])
 
@@ -74,7 +87,9 @@ export const GlobalContextProvider = (props: PropsWithChildren) => {
             setEnergy,
             claimed,
             setClaimed,
-            refs
+            refs,
+            userData,
+            setUserData
         }}>
             { props.children }
         </GlobalContext.Provider>
