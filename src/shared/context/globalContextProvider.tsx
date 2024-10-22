@@ -18,7 +18,7 @@ interface IUser {
 }
 
 export const GlobalContextProvider = (props: PropsWithChildren) => {
-    const [balance, setBalance] = useState<number | null>(150000);
+    const [balance, setBalance] = useState<number | null>(null);
     const [energy, setEnergy] = useState<number | null>(0);
     const [claimed, setClaimed] = useState<string[]>([]);
     const [refs, setRefs] = useState<string[]>([]);

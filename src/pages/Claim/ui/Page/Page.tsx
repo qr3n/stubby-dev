@@ -11,7 +11,7 @@ export const ClaimPage = () => {
     const [walletAddr, setWalletAddr] = useState('')
     const [tokensCount, setTokensCount] = useState(0)
 
-    const { mutate, isSuccess } = useMutation({
+    const { mutate, isSuccess, isError } = useMutation({
         mutationFn: async () => api.post('/tokens/claim', {
             telegram_id: user?.id,
             count: tokensCount
@@ -21,9 +21,17 @@ export const ClaimPage = () => {
 
     useEffect(() => {
         if (isSuccess) {
+            toast.success('Success!')
+
             setUserData(prev => prev ? {...prev, is_claiming_now: true} : null)
         }
     }, [isSuccess, setUserData])
+
+    useEffect(() => {
+        if (isError) {
+            toast.error('Oops... Something went wrong.')
+        }
+    }, [isError])
 
     return balance !== null ? (
         <>
